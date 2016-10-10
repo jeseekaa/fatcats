@@ -17,20 +17,20 @@ static char myblock[5000];
 static int initialized = 0; /*to keep track if mymalloc() has been called before*/
 
 /*linked list*/
-struct memoryNode{
+typedef struct memoryNode{
 
 	unsigned int size;
 	unsigned int isfree; 
 	/* isfree =1, !isfree=0 */
 
 	struct memoryNode *next, *prev;
-};
+} memoryNode;
 
 static const int memSize = (5000)/sizeof(struct memoryNode) + 1; /*size of the memory nodes*/
 static void *memPtr[5000/ (sizeof(struct memoryNode)+1)] = {0}; /*pointer to the memory nodes*/
 
 
-void * mymalloc(unsigned int size);
-void myfree(void* ptr);
+void *mymalloc(unsigned int size);
+void myfree(void *ptr);
 
 #endif

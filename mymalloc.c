@@ -12,39 +12,39 @@ CS214 Assignment01 due October 14, 2016 @ 11:55PM
 /*main for basic testing/compilation:
 the following works: */
 
-int main(){
+// int main(){
 
-	int* p1;
-	free(p1);
-	printf("myfree worked\n");
+// 	int* p1;
+// 	free(p1);
+// 	printf("myfree worked\n");
 
-	int* p2 = malloc(sizeof(int));
-	printf("mymalloc worked\n");
+// 	int* p2 = malloc(sizeof(int));
+// 	printf("mymalloc worked\n");
 
-	*p2 = 5;
-	printf("address: %p, value: %d\n", p2, *p2);
+// 	*p2 = 5;
+// 	printf("address: %p, value: %d\n", p2, *p2);
 
-	free(p2);
-	free(p2);
-	/*should return an error*/
-	printf("myfree worked\n");
+// 	free(p2);
+// 	free(p2);
+// 	/*should return an error*/
+// 	printf("myfree worked\n");
 
-	int* p2a = malloc(sizeof(int));
-	*p2a = 7;
-	/*since the previous one was freed, the address should be the same*/
-	printf("address: %p, value: %d\n", p2a, *p2a);
-	printf("mymalloc worked\n");
+// 	int* p2a = malloc(sizeof(int));
+// 	*p2a = 7;
+// 	/*since the previous one was freed, the address should be the same*/
+// 	printf("address: %p, value: %d\n", p2a, *p2a);
+// 	printf("mymalloc worked\n");
 
-	free(p2a);
-	printf("myfree worked\n");
+// 	free(p2a);
+// 	printf("myfree worked\n");
 
-	int* p3 = malloc(0);
-	printf("mymalloc worked \n");
+// 	int* p3 = malloc(0);
+// 	printf("mymalloc worked \n");
 
-	free(p3);
-	printf("myfreeworked\n");
-	return 0;
-}
+// 	free(p3);
+// 	printf("myfreeworked\n");
+// 	return 0;
+// }
 
 
 /*Gets the first index that is not in use*/
@@ -60,8 +60,8 @@ static int getFreeIndex(){
 /*mymalloc function*/
 void * mymalloc(unsigned int size){
 
-	struct memoryNode *ptr;
-	struct memoryNode *next;
+	memoryNode *ptr;
+	memoryNode *next;
 
 	static struct memoryNode *root;
 	
