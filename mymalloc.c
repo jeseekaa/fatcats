@@ -63,7 +63,7 @@ void * mymalloc(unsigned int size){
 	memoryNode *ptr;
 	memoryNode *next;
 
-	static struct memoryNode *root;
+	static memoryNode *root;
 	
 	/*Asking to allocate 0 bytes of memory*/
 	if(size==0){
@@ -74,9 +74,9 @@ void * mymalloc(unsigned int size){
 	/*first time calling mymalloc()*/
 	if(initialized ==0){
 
-		root = (struct memoryNode*) myblock;
+		root = (memoryNode*) myblock;
 		root->prev = root->next =0;
-		root->size = 5000 - sizeof(struct memoryNode);
+		root->size = 5000 - sizeof(memoryNode);
 		root->isfree = 1; /*is free*/
 		initialized =1;
 
@@ -95,17 +95,17 @@ void * mymalloc(unsigned int size){
 		}
 
 		/*exactly enough space, not enough for a new head node*/
-		else if(ptr->size < (size + sizeof(struct memoryNode))){
+		else if(ptr->size < (size + sizeof(memoryNode))){
 			ptr->isfree=0;
-			return (char*)ptr + sizeof(struct memoryNode);
+			return (char*)ptr + sizeof(memoryNode);
 		}
 
 		/*allocate space and new head node*/
 		else{
-			next = (struct memoryNode*)((char*)ptr +sizeof(struct memoryNode)+size);
+			next = (memoryNode*)((char*)ptr +sizeof(memoryNode)+size);
 			next->prev = ptr;
 			next->next = ptr->next;
-			next->size = ptr->size - sizeof(struct memoryNode)-size;
+			next->size = ptr->size - sizeof(memoryNode)-size;
 			next->isfree=1;
 
 			memPtr[getFreeIndex()] = next;
@@ -113,7 +113,7 @@ void * mymalloc(unsigned int size){
 			ptr->isfree=0;
 			ptr->next = next;
 
-			return(char*)ptr + sizeof(struct memoryNode);
+			return(char*)ptr + sizeof(memoryNode);
 
 		}
 	} 
@@ -126,16 +126,16 @@ void * mymalloc(unsigned int size){
 /*myfree funtion*/
 void myfree(void *ptr){
 
-	struct memoryNode *p;
-	struct memoryNode *prev;
-	struct memoryNode *next;
+	memoryNode *p;
+	memoryNode *prev;
+	memoryNode *next;
 
 	if(ptr == NULL){
 		fprintf(stderr, "ERROR: NULL pointer: LINE: %d FILE:\"%s\"  \n", __LINE__, __FILE__);
 		return;
 	}
 
-	p = (struct memoryNode*)((char*)ptr - sizeof(struct memoryNode));
+	p = (memoryNode*)((char*)ptr - sizeof(memoryNode));
 
 	/*check for valid memPtr*/
 	int i;
@@ -154,7 +154,7 @@ void myfree(void *ptr){
 
 	/*merge w/ prev nodes that are free*/
 	if((prev = p->prev)!=0 && prev->isfree){
-		prev->size += sizeof(struct memoryNode)+ p->size;
+		prev->size += sizeof(memoryNode)+ p->size;
 		memPtr[i] = 0;
 	}
 
@@ -164,7 +164,7 @@ void myfree(void *ptr){
 	}
 	/*merge w/ following nodes that are free*/
 	if((next = p->next)!=0 && next ->isfree){
-		prev->size += sizeof(struct memoryNode)+ next->size;
+		prev->size += sizeof(memoryNode)+ next->size;
 		prev->next = next->next;
 
 		for (i=0; i<memSize; i++){

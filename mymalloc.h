@@ -26,8 +26,8 @@ typedef struct memoryNode{
 	struct memoryNode *next, *prev;
 } memoryNode;
 
-static const int memSize = (5000)/sizeof(struct memoryNode) + 1; /*size of the memory nodes*/
-static void *memPtr[5000/ (sizeof(struct memoryNode)+1)] = {0}; /*pointer to the memory nodes*/
+static const int memSize = (5000)/sizeof(memoryNode) + 1; /*size of the memory nodes*/
+static void *memPtr[5000/ (sizeof(memoryNode)+1)] = {0}; /*pointer to the memory nodes*/
 
 
 void *mymalloc(unsigned int size);
