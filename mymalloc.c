@@ -12,7 +12,53 @@ CS214 Assignment01 due October 14, 2016 @ 11:55PM
 /*main for basic testing/compilation:
 the following works: */
 
-// int main(){
+
+/*int main(){
+	char* p1 = malloc(1);
+	*p1=3;
+	printf("address: %p, value: %d\n", p1, *p1);
+	char* p2 = malloc(1);
+	*p2 = 4;
+	printf("address: %p, value: %d\n", p2, *p2);
+	char* p3 = malloc(3000);
+	printf("address: %p \n", p3);
+	char* p4 = malloc(1);
+	printf("address: %p \n", p4);
+	char* p5 = malloc(1);
+	printf("address: %p \n", p5);
+	char* p6 = malloc(1);
+	printf("address: %p \n", p6);
+	char* p7 = malloc(1);
+	printf("address: %p \n", p7);
+	char* p8 = malloc(1);
+	printf("address: %p \n", p8);
+	char* p9 = malloc(1);
+	printf("address: %p \n", p9);
+	char* p10 = malloc(1);
+	printf("address: %p \n", p10);
+
+	free(p1);
+	printf("myfree worked\n");
+	free(p2);
+	printf("myfree worked\n");
+	free(p3);
+	printf("myfree worked\n");
+		free(p4);
+	printf("myfree worked\n");
+		free(p5);
+	printf("myfree worked\n");
+		free(p6);
+	printf("myfree worked\n");
+		free(p7);
+	printf("myfree worked\n");
+		free(p8);
+	printf("myfree worked\n");
+		free(p9);
+	printf("myfree worked\n");
+		free(p10);
+	printf("myfree worked\n");
+}*/
+
 
 // 	int* p1;
 // 	free(p1);
@@ -43,8 +89,8 @@ the following works: */
 
 // 	free(p3);
 // 	printf("myfreeworked\n");
-// 	return 0;
-// }
+// 	return 0; }
+ 
 
 
 /*Gets the first index that is not in use*/
@@ -67,7 +113,7 @@ void * mymalloc(unsigned int size){
 	
 	/*Asking to allocate 0 bytes of memory*/
 	if(size==0){
-		fprintf(stderr, "ERROR: why would you ask to allocate 0 memory like??? LINE %d FILE: \"%s\" \n", __LINE__ , __FILE__);
+		fprintf(stderr, "ERROR: cannot malloc 0 bytes LINE %d FILE: \"%s\" \n", __LINE__ , __FILE__);
 		return 0;
 	}
 
@@ -117,6 +163,7 @@ void * mymalloc(unsigned int size){
 
 		}
 	} 
+
 	/*full or not enough space*/
 	fprintf(stderr, "ERROR: Not enough memory: %d bytes LINE: %d FILE: \"%s\"\n", size, __LINE__, __FILE__);
 	return 0;
