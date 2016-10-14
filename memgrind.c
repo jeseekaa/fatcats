@@ -24,6 +24,8 @@ int main(){
 		break;
 		case 2: {
 			int testCounter;
+			float sum =0;
+			float avg =0;
 
 			for (testCounter = 0; testCounter < 100; testCounter++){
 				gettimeofday(&t1, NULL);
@@ -35,10 +37,12 @@ int main(){
     			// compute and print the elapsed time in millisec
 				elapsedTime = (t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
 				elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0;   // us to ms
-
+				sum=sum+elapsedTime;
+				
 				printf("test count: %d\n time: %f\n\n", testCounter, elapsedTime);
 				if(testCounter==99){
-				printf("average goes here\n");
+				avg=sum/100;
+				printf("Average time: %.6f\n", avg);
 				}
 			}
 
