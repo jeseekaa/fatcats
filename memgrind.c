@@ -99,69 +99,57 @@ int main(){
 		break;
 
 		case 3: {
-			int testCounter;
+
+			int mallocTracker = 0;
+			int successfulMalloc = 0;
+			int testCounter = 0;
 			float sum = 0;
 			float avg = 0;
+			void *testArray[100];
 
-			int r;
-			r = randomSelect[rand()%2];
-		for(testCounter=0; testCounter <10; testCounter++){
-			gettimeofday(&t1, NULL);
-				int i;
-				for(i =0; i<10; i++){
-				//use randomgen, if 1=malloc, 0 = free
-					r = randomSelect[rand()%2];
+			for (testCounter = 0; testCounter < 100; testCounter++) { 
 
-					if(r==1){
-						plswork[i]=malloc(1);
-					}
+				gettimeofday(&t1, NULL);
 
-					if(r==0){
-							free(plswork[i]);
-						}
+				while(mallocTracker < 3000) {
 
-					}
-				
+					int randomCase = randomSelect[rand()%2];
 
-				for(i =9; i>=0; i--){
-				//use randomgen, if 1=malloc, 0 = free
-					r = randomSelect[rand()%2];
-
-					if(r==1){
-						if(plswork[i]==0){ //if free
-							plswork[i] = malloc(1); //then malloc
-						}else{
-							free(plswork[i]);//else its full so free it
-						}
-					}
-
-					if(r==0){
-						if(plswork[i]==0){//if free
-							plswork[i]=malloc(1);
-						}else{ //if not free
-							free(plswork[i]);
-						}
-					}
-				//if malloc is error then free
-				//else malloc()
-				//if free is error then malloc
-				//else free()
-
+					//malloc a byte
+					if (randomCase == 0 || successfulMalloc == 0) {
+						testArray[successfulMalloc] = malloc(1);
+						mallocTracker++;
+						successfulMalloc++;
+						printf("MALLOC CHOOSEN %d\n", mallocTracker);
+					} else {
+						//free a random byte on the array
+						int randomFree = rand() % 100;
+						free(testArray[randomFree]);
+						printf("FREE CHOSEN: %d\n",randomFree);
+						successfulMalloc--;
+					} 
 				}
-				
+				//free all good mallocs 
+				while (successfulMalloc > 0) {
+
+					free(testArray[successfulMalloc - 1]);
+					successfulMalloc--;
+				}
+
+				//calculate stuff
 				gettimeofday(&t2, NULL);
-    			// compute and print the elapsed time in millisec
 				elapsedTime = (t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
 				elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0;   // us to ms
 				sum = sum + elapsedTime;
 				printf("test count: %d\n time: %f\n\n", testCounter, elapsedTime);
-
-				if(testCounter==9){
-					avg = sum/10;
+				if(testCounter==99){
+					avg = sum/100;
 					printf("Average time: %.6f\n", avg);
 				}
 
-			}
+
+			} 
+
 			printf(" Randomly choose between a 1 byte malloc() or free() 6000 times\n");
 		}
 		break;
