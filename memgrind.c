@@ -155,37 +155,59 @@ int main(){
 		break;
 
 		case 4: {
-			int testCounter;
+			int mallocTracker = 0;
+			int successfulMalloc = 0;
+			int testCounter = 0;
 			float sum = 0;
 			float avg = 0;
+			void *testArray[200];
 
-			int r;
-			r = randomSelect[rand()%2];
+			for (testCounter = 0; testCounter < 100; testCounter++) { 
 
-		for(testCounter=0; testCounter <100; testCounter++){
-			gettimeofday(&t1, NULL);
-				int i;
-				//fill in shit here
-			//use randomgen, if 1= malloc, 0 = free
-			//random gen any number from 1-100 to malloc()
-			//if malloc is error then free
-			//if free is error then malloc
-				
+				gettimeofday(&t1, NULL);
+
+				while(mallocTracker < 3000) {
+
+					int randomCase = randomSelect[rand()%2];
+
+					//malloc a byte
+					if (randomCase == 0 || successfulMalloc == 0) {
+						int randomMalloc = rand() % 200;
+						testArray[successfulMalloc] = malloc(randomMalloc);
+						mallocTracker++;
+						successfulMalloc++;
+						printf("MALLOC CHOOSEN %d with SIZE %d\n", mallocTracker,randomMalloc);
+					} else {
+						//free a random byte on the array
+						int randomFree = rand() % 200;
+						free(testArray[randomFree]);
+						printf("FREE CHOSEN: %d\n",randomFree);
+						successfulMalloc--;
+					} 
+				}
+				//free all good mallocs 
+				while (successfulMalloc > 0) {
+
+					free(testArray[successfulMalloc - 1]);
+					successfulMalloc--;
+				}
+
+				//calculate stuff
+
 				gettimeofday(&t2, NULL);
-    			// compute and print the elapsed time in millisec
 				elapsedTime = (t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
 				elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0;   // us to ms
 				sum = sum + elapsedTime;
 				printf("test count: %d\n time: %f\n\n", testCounter, elapsedTime);
-
 				if(testCounter==99){
 					avg = sum/100;
 					printf("Average time: %.6f\n", avg);
 				}
 
-			}
 
-			printf("Randomly choose between a randomly-sized malloc() or free 6000 times\n");
+			} 
+
+			printf(" Randomly choose between a random byte malloc() or free() 6000 times\n");
 		}
 		break;
 
