@@ -210,14 +210,30 @@ int main(){
 		}
 		break;
 
-		case 5: {
+		case 5: { 
 			int testCounter;
 			float sum = 0;
 			float avg = 0;
+			int rndm[] = {0,1,3,4,5,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24};
 
 		for(testCounter=0; testCounter <100; testCounter++){
 			gettimeofday(&t1, NULL);
 				int i;
+				for(i=0; i<=24; i++){
+					plswork[i]=malloc(100);
+					printf("malloc worked. address%p\n", plswork[i]);
+				}
+
+				int r =rndm[rand()%25];
+				free(plswork[r]);
+				printf("random free worked.\n");
+
+				//free all
+				for(i=24; i>=0; i--){
+					free(plswork[i]);
+					printf("free happened\n");
+				}
+
 				
 				//the things go here
 				
