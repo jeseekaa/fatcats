@@ -104,9 +104,8 @@ int main(){
 			int testCounter = 0;
 			float sum = 0;
 			float avg = 0;
-			void *testArray[100];
+			void *testArray[200];
 
-<<<<<<< HEAD
 			for (testCounter = 0; testCounter < 100; testCounter++) { 
 
 				gettimeofday(&t1, NULL);
@@ -123,7 +122,7 @@ int main(){
 						printf("MALLOC CHOOSEN %d\n", mallocTracker);
 					} else {
 						//free a random byte on the array
-						int randomFree = rand() % 100;
+						int randomFree = rand() % 200;
 						free(testArray[randomFree]);
 						printf("FREE CHOSEN: %d\n",randomFree);
 						successfulMalloc--;
