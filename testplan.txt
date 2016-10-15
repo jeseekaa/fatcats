@@ -1,0 +1,9 @@
+Jessica Guo, Christine Do
+
+Worload E
+Allocate 100bytes at a time for 25 times sequentially. Then we use a random number generator to pick a random spot to free. Then we free all the allocated pointers. The random free is to test that the metadata are stored and recovered properly. It also tests for repeated frees. Once the random slot is free, it should return an error if reached again.
+We also chose 100 bytes because previous workloads tested 1 byte.
+
+Workload F
+We chose to start with attempting to allocate a large amount, which results in an error. We decrement so that errors are consistently being passed until a valid amount can be handled. 
+It make sure our program can consistently handle erroneous  requests gracefully.
