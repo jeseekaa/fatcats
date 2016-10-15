@@ -36,22 +36,21 @@ int main(){
 			float avg = 0;
 			int i;
 
-			//for some reason only works once
-
-			//for (testCounter = 0; testCounter < 100; testCounter++){
+			for (testCounter = 0; testCounter < 100; testCounter++){
 				gettimeofday(&t1, NULL);
 
 				for(i=0; i<3000; i++){
 					plswork[i] = malloc(1);
+					printf("malloc works\n");
 				}
 
-				for(i=0; i<3000; i++){
+				for(i=2999; i>=0; i--){
 					free(plswork[i]);
 				}
 
 				gettimeofday(&t2, NULL);
 
-    			// compute and print the elapsed time in millisec
+    				// compute and print the elapsed time in millisec
 				elapsedTime = (t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
 				elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0;   // us to ms
 				sum = sum + elapsedTime;
@@ -63,7 +62,7 @@ int main(){
 					avg = sum/100;
 					printf("Average time: %.6f\n", avg);
 				}
-			//}
+		}
 
 			printf(" malloc() 1 byte 3000 times, then free() the 3000 1 byte pointers one by one\n");
 		}
