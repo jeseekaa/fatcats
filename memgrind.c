@@ -239,16 +239,24 @@ int main(){
 		}
 		break;
 
-		case 6: { //different types and their values
+		case 6: { //mallocing a HUGE out of bounds until a success
 			int testCounter;
 			float sum = 0;
 			float avg = 0;
+			char *test;
 			
 		for(testCounter=0; testCounter <100; testCounter++){
 			gettimeofday(&t1, NULL);
 				int i;
 				
 				//the shit goes here
+
+				for (i = 3000; i>0; i--) {
+
+					test = malloc(i);
+					free(test);
+
+				}
 				
 				gettimeofday(&t2, NULL);
     			// compute and print the elapsed time in millisec
