@@ -59,7 +59,6 @@ int main(){
 				//printf("sum as of now: %.6f", sum);
 				printf("test count: %d\n time: %f\n\n", testCounter, elapsedTime);
 
-
 				if(testCounter==99){
 					avg = sum/100;
 					printf("Average time: %.6f\n", avg);
@@ -105,50 +104,13 @@ int main(){
 
 			int r;
 			r = randomSelect[rand()%2];
-		for(testCounter=0; testCounter <10; testCounter++){
+		for(testCounter=0; testCounter <100; testCounter++){
 			gettimeofday(&t1, NULL);
 				int i;
-				for(i =0; i<10; i++){
-				//use randomgen, if 1=malloc, 0 = free
-					r = randomSelect[rand()%2];
-
-					if(r==1){
-						plswork[i]=malloc(1);
-					}
-
-					if(r==0){
-							free(plswork[i]);
-						}
-
-					}
+				
+				//fill more shit in
 				
 
-				for(i =9; i>=0; i--){
-				//use randomgen, if 1=malloc, 0 = free
-					r = randomSelect[rand()%2];
-
-					if(r==1){
-						if(plswork[i]==0){ //if free
-							plswork[i] = malloc(1); //then malloc
-						}else{
-							free(plswork[i]);//else its full so free it
-						}
-					}
-
-					if(r==0){
-						if(plswork[i]==0){//if free
-							plswork[i]=malloc(1);
-						}else{ //if not free
-							free(plswork[i]);
-						}
-					}
-				//if malloc is error then free
-				//else malloc()
-				//if free is error then malloc
-				//else free()
-
-				}
-				
 				gettimeofday(&t2, NULL);
     			// compute and print the elapsed time in millisec
 				elapsedTime = (t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
@@ -156,8 +118,8 @@ int main(){
 				sum = sum + elapsedTime;
 				printf("test count: %d\n time: %f\n\n", testCounter, elapsedTime);
 
-				if(testCounter==9){
-					avg = sum/10;
+				if(testCounter==99){
+					avg = sum/100;
 					printf("Average time: %.6f\n", avg);
 				}
 
@@ -167,23 +129,94 @@ int main(){
 		break;
 
 		case 4: {
+			int testCounter;
+			float sum = 0;
+			float avg = 0;
+
+			int r;
+			r = randomSelect[rand()%2];
+
+		for(testCounter=0; testCounter <100; testCounter++){
+			gettimeofday(&t1, NULL);
+				int i;
+				//fill in shit here
 			//use randomgen, if 1= malloc, 0 = free
 			//random gen any number from 1-100 to malloc()
 			//if malloc is error then free
 			//if free is error then malloc
+				
+				gettimeofday(&t2, NULL);
+    			// compute and print the elapsed time in millisec
+				elapsedTime = (t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
+				elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0;   // us to ms
+				sum = sum + elapsedTime;
+				printf("test count: %d\n time: %f\n\n", testCounter, elapsedTime);
+
+				if(testCounter==99){
+					avg = sum/100;
+					printf("Average time: %.6f\n", avg);
+				}
+
+			}
 
 			printf("Randomly choose between a randomly-sized malloc() or free 6000 times\n");
 		}
 		break;
 
 		case 5: {
+			int testCounter;
+			float sum = 0;
+			float avg = 0;
+
+		for(testCounter=0; testCounter <100; testCounter++){
+			gettimeofday(&t1, NULL);
+				int i;
+				
+				//the things go here
+				
+				gettimeofday(&t2, NULL);
+    			// compute and print the elapsed time in millisec
+				elapsedTime = (t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
+				elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0;   // us to ms
+				sum = sum + elapsedTime;
+				printf("test count: %d\n time: %f\n\n", testCounter, elapsedTime);
+
+				if(testCounter==99){
+					avg = sum/100;
+					printf("Average time: %.6f\n", avg);
+				}
+
+			}
 			printf("workload 1 of choosing\n");
 
 		}
 		break;
 
-		case 6: {
-			printf ("workload 2 of choosing\n");
+		case 6: { //different types and their values
+			int testCounter;
+			float sum = 0;
+			float avg = 0;
+			
+		for(testCounter=0; testCounter <100; testCounter++){
+			gettimeofday(&t1, NULL);
+				int i;
+				
+				//the shit goes here
+				
+				gettimeofday(&t2, NULL);
+    			// compute and print the elapsed time in millisec
+				elapsedTime = (t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
+				elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0;   // us to ms
+				sum = sum + elapsedTime;
+				printf("test count: %d\n time: %f\n\n", testCounter, elapsedTime);
+
+				if(testCounter==99){
+					avg = sum/100;
+					printf("Average time: %.6f\n", avg);
+				}
+
+			}
+			printf ("workload 2 of choosing: different types and their values\n");
 		}
 		break;
 
@@ -220,4 +253,18 @@ int main(){
 	// free(p3);
 	// printf("myfreeworked\n");
 	return 0;
+} //end of main
+
+void case1(int i){
+
+	void * omg[3000];
+
+	for(i=0; i<3000; i++){
+		omg[i] = malloc(1);
+		}
+
+	for(i=0; i<3000; i++){
+		free(omg[i]);
+	}
+	return;
 }

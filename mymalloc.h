@@ -13,8 +13,8 @@ CS214 Assignment01 due October 14, 2016 @ 11:55PM
 #define free(x) myfree(x)
 
 
-static char myblock[5000]; 
-static int initialized = 0; /*to keep track if mymalloc() has been called before*/
+//static char myblock[5000]; 
+//static int initialized = 0; /*to keep track if mymalloc() has been called before*/
 
 /*linked list*/
 typedef struct memoryNode{
@@ -27,7 +27,7 @@ typedef struct memoryNode{
 } memoryNode;
 
 static const int memSize = (5000)/sizeof(memoryNode) + 1; /*size of the memory nodes*/
-static void *memPtr[5000/ (sizeof(memoryNode)+1)] = {0}; /*pointer to the memory nodes*/
+//static void *memPtr[5000/ (sizeof(memoryNode)+1)] = {0}; /*pointer to the memory nodes*/
 
 
 void *mymalloc(unsigned int size);

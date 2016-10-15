@@ -9,6 +9,11 @@ CS214 Assignment01 due October 14, 2016 @ 11:55PM
 #include <stdio.h>
 #include "mymalloc.h"
 
+static char myblock[5000]; 
+static int initialized = 0; /*to keep track if mymalloc() has been called before*/
+
+static void *memPtr[5000/ (sizeof(memoryNode)+1)] = {0}; 
+
 /*main for basic testing/compilation:
 the following works: */
 
@@ -224,3 +229,4 @@ void myfree(void *ptr){
 	return;
 
 }
+
